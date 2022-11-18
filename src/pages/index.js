@@ -67,7 +67,7 @@ export default function Home() {
     axios.post("http://localhost:3001/makeTransaction", newTransaction);
   }
 
-  const claimTile = async () => {
+  const claimremember = async () => {
     try {
       const { ethereum } = window;
 
@@ -81,7 +81,7 @@ export default function Home() {
 
       const tokenToClaim = points / 10000;
 
-      let transaction = await connectedContract.claimTile(
+      let transaction = await connectedContract.claimremember(
         ethers.utils.parseUnits(tokenToClaim.toString(), "ether")
       );
 
@@ -129,7 +129,7 @@ export default function Home() {
         to +
         "\n\nTransaction Type: " +
         transactionType +
-        "\n\nTILE Amount: " +
+        "\n\nremember Amount: " +
         tokenToClaim +
         "\n\nGame: " +
         game +
@@ -143,15 +143,15 @@ export default function Home() {
 
       string transactionID
 
-      double tokenToClaim: Amount of TILE tokens claimed
+      double tokenToClaim: Amount of remember tokens claimed
       
       string transactionType: Type of transaction processed
 
       string from: User wallet address
 
-      string to: Wallet address from which TILE is withdrawn 
+      string to: Wallet address from which remember is withdrawn 
 
-      string game: The game in which the TILE is earned
+      string game: The game in which the remember is earned
 
       string date: Local date and time of transaction
       ===================================================
@@ -175,8 +175,11 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title>Crypto Cards | TILE Games</title>
-        <meta name="description" content="Crypto Cards game by TILE Games." />
+        <title>Crypto Cards | remember Games</title>
+        <meta
+          name="description"
+          content="Crypto Cards game by remember Games."
+        />
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
@@ -194,12 +197,12 @@ export default function Home() {
                   }`
                 : buttonText}
             </button>
-            <button className="conversion__btn" onClick={claimTile}>
+            <button className="conversion__btn" onClick={claimremember}>
               Convert Game <br /> Points
             </button>
           </div>
           <p className="conversion__exchange-info">
-            10000 Game Points = 1 TILE Token
+            10000 Game Points = 1 remember Token
           </p>
         </div>
       </header>
