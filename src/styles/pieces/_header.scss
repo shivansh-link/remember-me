@@ -1,0 +1,134 @@
+@use "../abstracts/mixins" as *;
+
+header {
+  height: 10vh;
+  padding: 1.5em;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  .points {
+    font-size: 2rem;
+    margin-bottom: 0.5em;
+    font-weight: 400;
+    letter-spacing: 1px;
+
+    @include mq(large) {
+      font-size: 1.7rem;
+    }
+
+    @include mq(medium) {
+      font-size: 1.55rem;
+    }
+  }
+
+  .countdown {
+    font-size: 1.5rem;
+    font-weight: 400;
+  }
+
+  .logo {
+    font-size: 2rem;
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-family: "Bangers", cursive;
+    cursor: pointer;
+    color: #fff;
+    text-decoration: none;
+  }
+
+  .conversion {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 5em;
+
+    &__btn-container {
+      display: flex;
+      align-items: center;
+    }
+
+    &__wallet-btn {
+      padding: 0.5em 0.8em;
+      font-size: 1.2rem;
+      font-weight: 300;
+      background: transparent;
+      border: 1px solid #fff;
+      color: #fff;
+      border-radius: 3px;
+      cursor: pointer;
+      margin-bottom: 1em;
+      transition: all 0.4s ease;
+      margin-right: 1em;
+
+      @include mq(large) {
+        font-size: 1.1rem;
+      }
+
+      @include mq(medium) {
+        font-size: 1rem;
+      }
+
+      &:hover {
+        color: #333;
+        background-color: #fff;
+        border: 1px solid #333;
+      }
+    }
+
+    &__btn {
+      padding: 0.5em 0.8em;
+      font-size: 1.3rem;
+      font-weight: 300;
+      background: transparent;
+      border: 1px solid #fff;
+      color: #fff;
+      border-radius: 3px;
+      cursor: pointer;
+      margin-bottom: 1em;
+      transition: all 0.4s ease;
+
+      @include mq(large) {
+        font-size: 1.15rem;
+      }
+
+      @include mq(medium) {
+        font-size: 1.1rem;
+      }
+
+      &:hover {
+        color: #333;
+        background-color: #fff;
+        border: 1px solid #333;
+      }
+    }
+
+    &__warning {
+      font-weight: 400;
+      color: rgb(207, 0, 0);
+      @include mq(large) {
+        font-size: 0.95rem;
+      }
+
+      @include mq(medium) {
+        font-size: 0.9rem;
+      }
+    }
+
+    &__exchange-info {
+      font-weight: 400;
+      margin: 0.5em;
+      font-size: 1.1rem;
+
+      @include mq(large) {
+        font-size: 1rem;
+      }
+
+      @include mq(medium) {
+        font-size: 0.95rem;
+      }
+    }
+  }
+}

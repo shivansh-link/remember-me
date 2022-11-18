@@ -1,0 +1,20 @@
+@use "../abstracts/mixins" as *;
+
+.title {
+  text-align: center;
+  font-size: 7rem;
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 5px;
+  font-family: "Bangers", cursive;
+  margin: 0.5em 0;
+
+  @include mq(large) {
+    font-size: 6rem;
+    margin: 1em 0;
+  }
+
+  @include mq(medium) {
+    font-size: 5rem;
+  }
+}
