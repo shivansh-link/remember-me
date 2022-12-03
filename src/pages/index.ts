@@ -5,6 +5,7 @@ import { ethers } from "ethers";
 import { useEffect } from "react";
 import { contractAddress, contractABI } from "../abi/contract";
 import axios from "axios";
+import tableland from '@tableland/sdk';
 
 import {
   useAccountContext,
@@ -69,45 +70,48 @@ export default function Home() {
 
   return (
     <>
-      <Head>
-        <title>RememberMe</title>
-      </Head>
+    <Head>
+    <title>RememberMe < /title>
+    < /Head>
 
-      <header>
-        <h2 className="points">Game Points: {points}</h2>
-        <div className="conversion">
-          <div className="conversion__btn-container">
-            <button
+    < header >
+    <h2 className= "points" > Game Points: { points } </h2>
+      < div className = "conversion" >
+        <div className="conversion__btn-container" >
+          <button
               className="conversion__wallet-btn"
-              onClick={() => connectWallet(accountDispatch)}
+  onClick = {() => connectWallet(accountDispatch)
+}
             >
-              {accountState.account
-                ? `${formatAccount(accountState?.account.address)} | $ROSE : ${accountState?.account.balance
-                }`
-                : buttonText}
-            </button>
-            <button className="conversion__btn" onClick={claimremember}>
-              Convert Game <br /> Points
-            </button>
-          </div>
-          <p className="conversion__exchange-info">
-            10000 Game Points = 1 remember Token
-          </p>
-        </div>
-      </header>
+{
+  accountState.account
+    ? `${formatAccount(accountState?.account.address)} | $ROSE : ${accountState?.account.balance
+    }`
+    : buttonText
+}
+  < /button>
+  < button className = "conversion__btn" onClick = { claimremember } >
+    Convert Game < br /> Points
+      < /button>
+      < /div>
+      < p className = "conversion__exchange-info" >
+        10000 Game Points = 1 remember Token
+          < /p>
+          < /div>
+          < /header>
 
-      <h1 className="title">Crypto Cards</h1>
+          < h1 className = "title" > Crypto Cards < /h1>
 
-      <div className="btn-container">
-        <Anchor
-          destination={"/game-modes/hard-mode"}
-          img={"/static/images/hard-splash.jpg"}
-          level={"Hard"}
-          pairNo={15}
-          reward={20}
-        />
-      </div>
-    </>
+            < div className = "btn-container" >
+              <Anchor
+          destination={ "/game-modes/hard-mode" }
+img = { "/static/images/hard-splash.jpg"}
+level = { "Hard"}
+pairNo = { 15}
+reward = { 20}
+  />
+  </div>
+  < />
   );
 }
 
