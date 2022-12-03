@@ -1,9 +1,7 @@
 import { useState, useEffect, useRef } from "react";
-
+import Card from "../../components/Card";
 import Link from "next/link";
 import Head from "next/head";
-
-import Card from "../../components/Card";
 import FinishModal from "../../components/FinishModal";
 
 import { usePointsContext } from "../../context/context";
@@ -12,22 +10,14 @@ const cardImages = [
   { src: "/static/icons/bitcoin.png", matched: false },
   { src: "/static/icons/ethereum.png", matched: false },
   { src: "/static/icons/cardano.png", matched: false },
-  { src: "/static/icons/rose.png", matched: false },
   { src: "/static/icons/xrp.png", matched: false },
   { src: "/static/icons/bnb.png", matched: false },
   { src: "/static/icons/stellar.png", matched: false },
-  { src: "/static/icons/cake.png", matched: false },
   { src: "/static/icons/solana.png", matched: false },
   { src: "/static/icons/polkadot.png", matched: false },
 ];
 
 const MediumMode = () => {
-  /*
-  ===========
-  STATE HOOKS
-  ===========
-  */
-
   const [cards, setCards] = useState([]);
   const [choiceOne, setChoiceOne] = useState(null);
   const [choiceTwo, setChoiceTwo] = useState(null);
@@ -36,28 +26,9 @@ const MediumMode = () => {
   const [isCountdownOn, setIsCountdownOn] = useState(false);
   const [isGameFinished, setIsGameFinished] = useState(false);
   const [cardLeft, setCardLeft] = useState(true);
-
-  /*
-  =========
-  REF HOOKS
-  =========
-  */
-
-  // Will be used to keep state values inside interval functions up to date
   const countdownRef = useRef();
   const countdownTimerRef = useRef();
   const cardsRef = useRef();
-
-  /*
-  ============
-  EFFECT HOOKS
-  ============
-  */
-
-  useEffect(() => {
-    shuffleCards();
-    setIsCountdownOn(true);
-  }, []);
 
   useEffect(() => {
     // Check if choices match
@@ -80,6 +51,12 @@ const MediumMode = () => {
       }
     }
   }, [choiceOne, choiceTwo]);
+
+
+  useEffect(() => {
+    shuffleCards();
+    setIsCountdownOn(true);
+  }, []);
 
   useEffect(() => {
     // Set up countdown
@@ -106,44 +83,12 @@ const MediumMode = () => {
     }
   }, [cards]);
 
-  /*
-  =======
-  CONTEXT
-  =======
-  */
-
   const { updatePoints } = usePointsContext();
-
-  /*
-  =========
-  FUNCTIONS
-  =========
-  */
-
-  const shuffleCards = () => {
-    const shuffledCards = [...cardImages, ...cardImages]
-      .sort(() => Math.random() - 0.5)
-      .map((card) => ({ ...card, id: Math.random() }));
-
-    setCards(shuffledCards);
-  };
-
-  const handleChoice = (card) => {
-    choiceOne ? setChoiceTwo(card) : setChoiceOne(card);
-  };
 
   const resetTurn = () => {
     setChoiceOne(null);
     setChoiceTwo(null);
     setDisabled(false);
-  };
-
-  const checkCountdown = () => {
-    if (countdownRef.current > 0) {
-      setCountdown((prev) => prev - 1);
-    } else {
-      finishGame();
-    }
   };
 
   const finishGame = () => {
@@ -160,45 +105,30 @@ const MediumMode = () => {
     }
   };
 
-  /*
-  ======
-  RETURN
-  ======
-  */
-
   return (
     <>
-      <Head>
-        <title>Medium | Crypto Cards</title>
-        <meta
-          name="description"
-          content="Medium difficulty mode of the game Crypto Cards"
-        />
-      </Head>
-
-      <header>
-        <Link href="/">
-          <a className="logo">Crypto Cards</a>
-        </Link>
-        <h3 className="countdown">{countdown} seconds</h3>
-      </header>
-      {cards && (
-        <section className="card-grid--medium">
-          {cards.map((card) => (
-            <Card
-              key={card.id}
-              card={card}
-              handleChoice={handleChoice}
-              flipped={card === choiceOne || card === choiceTwo || card.matched}
-              disabled={disabled}
-              level={"medium"}
-              finished={isGameFinished}
-            />
+    <Head>
+    <title>Remember Me < /title>
+      < /Head>
+  { isGameFinished && <FinishModal gameFailed={ cardLeft } pointGain = { 10} />}
+  {
+    cards && (
+      <section className="card-grid--medium" >
+      {
+        cards.map((card) => (
+          <Card
+              key= { card.id }
+              card = { card }
+              handleChoice = { handleChoice }
+              flipped = { card === choiceOne || card === choiceTwo || card.matched}
+    disabled = { disabled }
+    level = { "medium"}
+    finished = { isGameFinished }
+      />
           ))}
-        </section>
+</section>
       )}
-      {isGameFinished && <FinishModal gameFailed={cardLeft} pointGain={10} />}
-    </>
+</>
   );
 };
 
